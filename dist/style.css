@@ -1,12 +1,10 @@
 .card {
     margin: 1rem;
-}
-.team-header {
-    border-radius: 100px;
+    box-shadow: rgba(10, 10, 10, 0.337);
 }
 
 .employee-card {
-    box-shadow: gray;
+    box-shadow: rgba(10, 10, 10, 0.337);
     border: none;
 }
 

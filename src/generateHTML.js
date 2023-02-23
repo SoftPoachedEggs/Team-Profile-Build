@@ -6,7 +6,7 @@ const generateHTML = team => {
     const generateManager = addManager => {
         return `
         <div class="card employee-card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-warning text-black">
             <h2 class="card-title">${addManager.getName()}</h2>
             <h3 class="card-title"><i class="fa-sharp fa-solid fa-mug-hot"></i>${addManager.getRole()}</h3>
         </div>
@@ -25,7 +25,7 @@ const generateHTML = team => {
     const generateEngineer = addEngineer => {
         return `
         <div class="card employee-card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-warning text-black">
             <h2 class="card-title">${addEngineer.getName()}</h2>
             <h3 class="card-title"><i class="fa-sharp fa-solid fa-laptop-code"></i>${addEngineer.getRole()}</h3>
         </div>
@@ -44,7 +44,7 @@ const generateHTML = team => {
     const generateIntern = addIntern => {
         return `
         <div class="card employee-card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-warning text-black">
             <h2 class="card-title">${addIntern.getName()}</h2>
             <h3 class="card-title"><i class="fa-sharp fa-solid fa-user-graduate"></i>${addIntern.getRole()}</h3>
         </div>
@@ -97,8 +97,8 @@ module.exports = team => {
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div id = 'team-header' class="col-12 mb-3 team-heading bg-danger">
-                <h1 class="text-center text-white">Team Profiles</h1>
+                <div id = 'team-header' class="col-12 mb-3 team-heading bg-info p-4">
+                <h1 class="text-center text-black">Team Profiles</h1>
                 </div>
             </div>
         </div>

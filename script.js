@@ -136,7 +136,7 @@ async function enterEmployeeProfile(){
 
   }
 
-  //Await answers from requestEmp and call function again if ;
+  //Await answers from requestEmp and call function again;
   const addMore = await inquirer.prompt([
     {
       name: 'addAnother',
