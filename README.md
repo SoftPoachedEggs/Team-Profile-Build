@@ -8,7 +8,7 @@
 - [Questions](#questions)
 
 ## Description
-This project was designed to dempnstrate the use of Node.js, Express.JS, Inquirer, and Jest. The application is a simple employee profile generator that uses the command prompt to enter employee information resulting in a web page where  employee information is displayed.
+This project was designed to dempnstrate the use of Node.js, Inquirer, and Jest. The application is a simple employee profile generator that uses the command prompt to enter employee information resulting in a web page where  employee information is displayed.
 ## Install
 To run the application, go into root directory and run 'NPM Install" followed by "node script.js"
 ## Use
