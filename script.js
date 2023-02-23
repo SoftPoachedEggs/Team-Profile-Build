@@ -5,31 +5,81 @@ const Employee = require("./lib/Employee.js")
 const Engineer = require("./lib/Engineer.js")
 const Manager = require("./lib/Manager.js")
 const Intern = require("./lib/Intern.js")
+const generateHTML = require("./src/generateHTML.js")
+const fileName = './dist/index.html'
+
 
 //create array for employee data
 const employeeData = [];
-
-//Initialize new Employee object
-//const employee = new Employee(); 
+console.log('Employee data:', employeeData)
 
 const roles = ['Manager','Engineer', 'Intern']
 
-// Create an array of questions for user input
+//create input validation checks for prompt questions
+const validateName = (input) => {
+  const name = input;
+  if (typeof input !== 'string') {
+    return 'Please re-enter employee name.';
+  }
+  if (name === '') {
+    return 'Please enter a name.';
+  }
+  return true;
+};
+//inquirer defaults to string so convert input to int and check for error.
+const validateNumber = (input) => {
+  const isNum = parseInt(input);
+  if (Number.isNaN(isNum)) {
+    return 'Please a number.';
+  }
+  if (isNum === '') {
+    return 'Please enter a number.';
+  }
+  return true;
+};
+//check format of email to prevent mail form issues. 
+const validateEmail = (input) => {
+  // Email regex pattern
+  const emailRegex = /\S+@\S+\.\S+/;
+  // Test input against regex pattern
+  if (!emailRegex.test(input)) {
+    return 'Please enter a valid email address.';
+  }
+  return true;
+};
+//check string inputs for 
+const validateString = (input) => {
+  const isString = input;
+  if (typeof isString !== 'string') {
+    return 'Please re-enter.';
+  }
+  if (isString === '') {
+    return 'Please enter.';
+  }
+  return true;
+};
+
+// Create an array of prompts for inquirer
 const employeeQuestions = [
       {
         type: 'input',
         message: 'What is the team member name?',
         name: 'name',
+        validate: validateName
       },
       {
         type: 'input',
         message: 'What is their employee ID?',
         name: 'id',
+        validate: validateNumber
+
       },
       {
         type: 'input',
         message: 'What is their email?',
         name: 'email',
+        validate: validateEmail
+
       },
       {
         type: 'list',
@@ -40,23 +90,29 @@ const employeeQuestions = [
       {
         type: 'input',
         message: 'What is their office number?',
-        name: 'officenumber',
+        name: 'officeumber',
         when: employee => employee.role === "Manager",
+        validate: validateNumber
+
       },
       {
         type: 'input',
         message: 'What is their GitHub Username?',
         name: 'gitname',
-        when: employee => employee.role === "Engineer"
+        when: employee => employee.role === "Engineer",
+        validate: validateString
+
       },
       {
         type: 'input',
         message: 'What is their school?',
         name: 'school',
-        when: employee => employee.role === "Intern"
+        when: employee => employee.role === "Intern",
+        validate: validateString
       },
     ];
-//create async function that invokes terminal prompts and switch statement to pass results to subclass modules
+
+//create async function that invokes terminal prompts and switch statement to pass results to class modules
 async function enterEmployeeProfile(){
 
   let employeeProfile = await inquirer.prompt(employeeQuestions);
@@ -75,6 +131,8 @@ async function enterEmployeeProfile(){
       employeeData.push(addIntern);
       break;
     default: 
+      writeToFile();
+      
 
   }
 
@@ -89,23 +147,23 @@ async function enterEmployeeProfile(){
 
   ]);
   //create conditional statement to end session if no more employees to add
-  if (admore.addAnother === true) {
+  if (addMore.addAnother === true) {
     enterEmployeeProfile();
   } else {
-  
+    writeToFile()
+    process.exit(console.log("\nGoodbye!"));
   }
 }
 
-// TODO: Create a function to write to HTML
-function writeToFile(data) {
-  const fileName = "./dist/index.html";
+//Write to HTML function
+function writeToFile() {
 
-  fs.writeFileSync(fileName, data)
+  fs.writeFileSync(fileName, generateHTML(employeeData))
+  console.log('Employee data:', employeeData)
   console.log("File created successfully!");
 }
 
 async function init() {
-
   const choice = await inquirer.prompt({
       name: 'AddEmployee',
       type: 'list',
@@ -114,8 +172,7 @@ async function init() {
   });
   
   if(choice.AddEmployee === 'Exit') {
-      prompt.ui.close();
-      console.log("\nGoodbye!");
+      process.exit(console.log("\nGoodbye!"));
   }
   
   enterEmployeeProfile();

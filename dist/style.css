@@ -1,0 +1,15 @@
+.card {
+    margin: 1rem;
+}
+.team-header {
+    border-radius: 100px;
+}
+
+.employee-card {
+    box-shadow: gray;
+    border: none;
+}
+
+.card-body {
+    background-color: rgb(240, 240, 240);
+}
