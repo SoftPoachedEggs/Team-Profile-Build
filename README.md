@@ -3,7 +3,7 @@
 - [Description](#description)
 - [Install](#install)
 - [Use](#use)
-- [Contributing](#contributing)
+- [Video](#video)
 - [License](#license)
 - [Questions](#questions)
 
@@ -13,8 +13,8 @@ This project was designed to dempnstrate the use of Node.js, Express.JS, Inquire
 To run the application, go into root directory and run 'NPM Install" followed by "node script.js"
 ## Use
 For educational purposes only
-## Contributing
-None.
+## Video
+![Team Profile](./assets/video/teamprofile.gif)
 ## License
 Visit https://opensource.org/licenses/MIT for more information.
 ![License Badge](https://img.shields.io/badge/license-MIT-orange);
